@@ -25,6 +25,10 @@ hgroup,
 main,
 menu,
 nav,
+.navbar-btn{
+
+}
+.navbar-btn.hov
 section,
 summary {
   display: block;

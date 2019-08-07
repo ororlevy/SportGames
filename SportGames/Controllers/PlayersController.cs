@@ -15,10 +15,18 @@ namespace SportGames.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Players
-        public ActionResult Index()
+        public ActionResult Index(String name, String team,String age)
         {
-            var players = db.Players.Include(p => p.Team);
-            return View(players.ToList());
+            
+            var players = db.Players.Where(p=>p.Name.ToLower().Contains(name.ToLower()) || name==null || name=="").Include(p => p.Team);
+            players.Where(p => p.Team.Name.ToLower().Contains(team.ToLower()) || team == null || team=="");
+            int num = Convert.ToInt32(age);
+            var players2 = db.Players.Where(p => (
+            (p.Name.ToLower().Contains(name.ToLower()) || name == null || name=="") && 
+            (p.Team.Name.ToLower().Contains(team.ToLower())|| team==null || team=="") &&
+            (p.Age==num || age == null || age == "")
+            )).Include(p=>p.Team);
+            return View(players2.ToList());
         }
 
         // GET: Players/Details/5
@@ -127,6 +135,12 @@ namespace SportGames.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult Search()
+        {
+            var result = from p in db.Players where p.Name.Contains("anat") select p;
+            
+            return View(result.ToList());
         }
     }
 }
