@@ -52,6 +52,9 @@ namespace SportGames.Controllers
             {
                 db.Coaches.Add(coach);
                 db.SaveChanges();
+                FB fB = new FB();
+                String msg = "We hava uploaded new coach : " + coach.Name;
+                
                 return RedirectToAction("Index");
             }
 

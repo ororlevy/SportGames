@@ -37,6 +37,26 @@
         @RenderBody()
         <hr />
         <footer>
+
+            <div >
+                <p id="demo"></p>
+                <script>
+                    var request = new XMLHttpRequest()
+                    request.open('GET', 'http://api.isportsapi.com/sport/free/football/livescores?api_key=AxugV48LypUeRw8C', true)
+                    var test = "hello"
+                    document.getElementById("demo").innerHTML = test;
+                    request.onload = function () {
+                        var data = JSON.stringify(this.response)
+                        var data = JSON.stringify(this.response)
+                        document.getElementById("demo").innerHTML = data;
+                    }
+                    request.send();
+                </script>
+
+                  
+
+               
+            </div>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>

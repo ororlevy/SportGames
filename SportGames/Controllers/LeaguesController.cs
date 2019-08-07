@@ -123,5 +123,20 @@ namespace SportGames.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult LeagueData(int? id)
+        {
+            1if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var q = (from tl in db.TeamLeagues
+                     join t in db.Team on tl.TeamId  equals t.TeamId
+                     where tl.LeagueId == id
+                     select t).Include(t=> t.Name).ToList();
+
+
+            return View(q);
+        }
     }
 }
