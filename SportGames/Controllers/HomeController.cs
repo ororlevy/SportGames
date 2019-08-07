@@ -26,5 +26,10 @@ namespace SportGames.Controllers
 
             return View();
         }
+
+        public ActionResult Game()
+        {
+            return View();
+        }
     }
 }
