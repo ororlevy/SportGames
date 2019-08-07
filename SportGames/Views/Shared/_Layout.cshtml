@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/a.css" media="screen" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,12 +18,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ComodoGames", "index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Home", "index", "Home")</li>
+                    <li>@Html.ActionLink("Play Soccer", "Game", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.IsInRole("Admin"))
                     {
@@ -38,26 +39,10 @@
         <hr />
         <footer>
 
-            <div >
-                <p id="demo"></p>
-                <script>
-                    var request = new XMLHttpRequest()
-                    request.open('GET', 'http://api.isportsapi.com/sport/free/football/livescores?api_key=AxugV48LypUeRw8C', true)
-                    var test = "hello"
-                    document.getElementById("demo").innerHTML = test;
-                    request.onload = function () {
-                        var data = JSON.stringify(this.response)
-                        var data = JSON.stringify(this.response)
-                        document.getElementById("demo").innerHTML = data;
-                    }
-                    request.send();
-                </script>
+            <iframe class="facebook" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FSport-Game-109465073737034%2F%3Fmodal%3Dadmin_todo_tour&width=500&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=478734902689598" width="500" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+            
+            <p class="footer"><font color="white">&copy; @DateTime.Now.Year - My ASP.NET Application</font></p>     
 
-                  
-
-               
-            </div>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 

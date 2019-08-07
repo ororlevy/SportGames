@@ -8,10 +8,12 @@
 <h2>Players</h2>
 
 <p>
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Create New", "Create")
-    }
+
+     @if (User.IsInRole("Admin")){
+    @Html.ActionLink("Create New", "Create", null, new { @style = "color:white;" })
+
+ }
+
     @using (Html.BeginForm("Index", "Players", FormMethod.Get))
     {
         @Html.TextBox("name", "", new { placeholder = "Name of the player" })

@@ -10,7 +10,9 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
+    background: url("~/Content/images/kvEAT19.jpg") no-repeat center center fixed;
+    margin: 0;
+    color:white
 }
 article,
 aside,
@@ -1530,6 +1532,7 @@ address {
   margin-bottom: 20px;
   font-style: normal;
   line-height: 1.42857143;
+  color:white
 }
 code,
 kbd,
@@ -4959,6 +4962,7 @@ a.badge:focus {
 .nav-pills > li > a > .badge {
   margin-left: 3px;
 }
+
 .jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -4966,11 +4970,13 @@ a.badge:focus {
   color: inherit;
   background-color: #eee;
 }
+
 .jumbotron h1,
 .jumbotron .h1 {
-  color: inherit;
+  color: inherint;
 }
-.jumbotron p {
+.jumbotron p
+{
   margin-bottom: 15px;
   font-size: 21px;
   font-weight: 200;
