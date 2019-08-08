@@ -32,9 +32,51 @@ section {
   width: 100%;
   
 }
+.logo {
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 25px;
+    width: 200px
+}
+.multi {
+    column-count: 2;
+}
+/* Create two unequal columns that floats next to each other */
+.column1 {
+    float: left;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+    width: 25%;
+}
+
+.right {
+    width: 75%;
+}
+
+/* Clear floats after the columns */
+.aaa:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.multi:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 video{
 	display: block;
 	margin: 0 auto;
+}
+.shadow {
+    text-shadow: 2px 2px 5px red;
+}
+.aside {
+    padding: 0px 0px 15px 0px;
 }
 .La-Liga {
     background: url("/Content/images/La_Liga.png") no-repeat center

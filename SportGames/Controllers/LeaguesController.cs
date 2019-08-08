@@ -134,7 +134,7 @@ namespace SportGames.Controllers
                      join t in db.Team on tl.TeamId  equals t.TeamId
                      where tl.LeagueId == id
                      select t).ToList();
-            
+            ViewBag.LeagueName = db.Leagues.Find(id);
 
             return View(q);
         }
