@@ -48,7 +48,7 @@ namespace SportGames.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TeamId,Name,Country,Wins,Losses,CoachId")] Team team)
+        public ActionResult Create([Bind(Include = "TeamId,Name,Country,Wins,Losses,CoachId,ImgURL")] Team team)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace SportGames.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TeamId,Name,Country,Wins,Losses,CoachId")] Team team)
+        public ActionResult Edit([Bind(Include = "TeamId,Name,Country,Wins,Losses,CoachId,ImgURL")] Team team)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +127,20 @@ namespace SportGames.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult TeamData(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var q = (from t in db.Team
+                     join p in db.Players on t.TeamId equals p.TeamId
+                     where t.TeamId == id 
+                     select p).ToList();
+            ViewBag.team = db.Team.Find(id);
+            return View(q);
         }
     }
 }
