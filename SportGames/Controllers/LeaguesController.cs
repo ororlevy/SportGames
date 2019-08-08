@@ -46,7 +46,7 @@ namespace SportGames.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LeagueId,NameOfLeague,Country")] League league)
+        public ActionResult Create([Bind(Include = "LeagueId,NameOfLeague,Country,ImgURL,Description")] League league)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace SportGames.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LeagueId,NameOfLeague,Country")] League league)
+        public ActionResult Edit([Bind(Include = "LeagueId,NameOfLeague,Country,ImgURL,Description")] League league)
         {
             if (ModelState.IsValid)
             {
@@ -126,15 +126,15 @@ namespace SportGames.Controllers
 
         public ActionResult LeagueData(int? id)
         {
-            1if (id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var q = (from tl in db.TeamLeagues
                      join t in db.Team on tl.TeamId  equals t.TeamId
                      where tl.LeagueId == id
-                     select t).Include(t=> t.Name).ToList();
-
+                     select t).ToList();
+            
 
             return View(q);
         }

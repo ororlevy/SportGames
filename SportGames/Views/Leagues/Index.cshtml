@@ -17,6 +17,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Country)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +33,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImgURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.LeagueId }) |

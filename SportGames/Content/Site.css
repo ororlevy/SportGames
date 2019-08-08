@@ -36,7 +36,9 @@ video{
 	display: block;
 	margin: 0 auto;
 }
-
+.La-Liga {
+    background: url("/Content/images/La_Liga.png") no-repeat center
+}
 *{
     color:white;
 }
