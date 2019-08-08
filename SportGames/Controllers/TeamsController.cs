@@ -10,6 +10,7 @@ using SportGames.Models;
 
 namespace SportGames.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TeamsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
