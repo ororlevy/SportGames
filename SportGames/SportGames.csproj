@@ -232,6 +232,7 @@
   <ItemGroup>
     <Content Include="Content\game.css" />
     <Content Include="Content\game.js" />
+    <Content Include="Content\images\FC_Barcelona.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

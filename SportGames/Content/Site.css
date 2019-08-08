@@ -20,6 +20,9 @@
   clear: both;
   display: table;
 }
+table{
+    border:0px
+}
 body {
     background: url("/Content/images/kvEAT19.jpg") no-repeat center fixed;
     background-size: cover;
@@ -55,7 +58,16 @@ section {
 .right {
     width: 75%;
 }
-
+.container {
+    padding:10px 0px 20px 0px
+}
+.coach {
+    text-align: center;
+    text-shadow: 2px 2px 5px red;
+}
+.list {
+    display: list-item;
+}
 /* Clear floats after the columns */
 .aaa:after {
     content: "";
