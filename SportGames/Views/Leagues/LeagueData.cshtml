@@ -18,20 +18,27 @@
   <h1>Name Of Team</h1>
 </aside>
 
-
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" placeholder="Search" class="form-control" />
+        </div>
+    </div>
+</div>
+<p id="demo"></p>
 <div class="aaa">
     <div class="column1 left" style="background-color:transparent;">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <aside class="aside">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </aside>
-                </td>
+        <table >
+            <tr class="Search" >
+                <td onclick="location.href='@Url.Action("TeamData","Teams",new { id=item.TeamId})'" > @item.Name</td>
+               
 
 
             </tr>
+        </table>
         }
     </div>
     <div class="column1 right" style="background-color:transparent;">
@@ -40,7 +47,31 @@
         </section>
     </div>
 </div>
-   
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if ($(this).text().toLowerCase().indexOf(searchText) == -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+            
+            
+        });
+
+    });
+</script>
 
 
 

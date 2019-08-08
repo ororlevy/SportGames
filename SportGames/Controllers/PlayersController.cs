@@ -18,15 +18,21 @@ namespace SportGames.Controllers
         public ActionResult Index(String name, String team,String age)
         {
             
-            var players = db.Players.Where(p=>p.Name.ToLower().Contains(name.ToLower()) || name==null || name=="").Include(p => p.Team);
-            players.Where(p => p.Team.Name.ToLower().Contains(team.ToLower()) || team == null || team=="");
-            int num = Convert.ToInt32(age);
-            var players2 = db.Players.Where(p => (
+            int num=0;
+            if (age != null && !age.Equals(""))
+            {
+                num = Convert.ToInt32(age);
+            }
+            var players = db.Players.Where(p => (
             (p.Name.ToLower().Contains(name.ToLower()) || name == null || name=="") && 
             (p.Team.Name.ToLower().Contains(team.ToLower())|| team==null || team=="") &&
             (p.Age==num || age == null || age == "")
             )).Include(p=>p.Team);
-            return View(players2.ToList());
+            if (Request.IsAjaxRequest())
+                return PartialView(players);
+
+            
+            return View(players.ToList());
         }
 
         // GET: Players/Details/5
