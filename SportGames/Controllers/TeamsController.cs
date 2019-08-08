@@ -140,6 +140,7 @@ namespace SportGames.Controllers
                      where t.TeamId == id 
                      select p).ToList();
             ViewBag.team = db.Team.Find(id);
+            ViewBag.coach = db.Coaches.Find(db.Team.Find(id).CoachId);
             return View(q);
         }
     }

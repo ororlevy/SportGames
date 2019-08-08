@@ -4,6 +4,7 @@
 }
 @{
     var data = ViewBag.team;
+    var data2 = ViewBag.coach;
 
 }
 <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
@@ -16,7 +17,11 @@
         </div>
     </div>
 </div>
-<h1 class="coach">Name Of Coach</h1>
+
+<p class="coach">
+    <img class="logo" src=@data2.ImgURL width="200" height="200">
+    <h3 class="coach">@data2.Name</h3>
+</p>
 
 <h3 class="shadow">List of Players</h3>
 
