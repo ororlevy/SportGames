@@ -4,29 +4,44 @@
     ViewBag.Title = "LeagueData";
 }
 
-<h2>LeagueData</h2>
+@{ 
+    var data = ViewBag.LeagueName;
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-           
-
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+}
+<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+<img class="logo" src=@data.ImgURL alt="pl" width="200" height="200">
 
 
-        </tr>
-    }
 
-</table>
+
+<aside class="shadow">
+  <h1>Name Of Team</h1>
+</aside>
+
+
+<div class="aaa">
+    <div class="column1 left" style="background-color:transparent;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <aside class="aside">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </aside>
+                </td>
+
+
+            </tr>
+        }
+    </div>
+    <div class="column1 right" style="background-color:transparent;">
+        <section class="multi">
+            @data.Description
+        </section>
+    </div>
+</div>
+   
+
+
+
 
