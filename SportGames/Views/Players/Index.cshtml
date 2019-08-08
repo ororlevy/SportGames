@@ -87,3 +87,19 @@
     
 
 </table>
+<script>
+    $(function () {
+
+        $("#name,#team,#age").keyup(function (e) {
+            var n = $("#name").val();
+            var t = $("#team").val();
+            var a = $("#age").val();
+            $.get("/Players/Index?name=" + n + "&team=" + t + "&age="+a, function (r) {
+                //update ui with results
+                $("#resultsTable").html(r);
+            });
+
+        });
+
+    });
+</script>
