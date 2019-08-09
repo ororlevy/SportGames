@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SportGames.Models.Team>
+@{
+    ViewBag.Title = "GroupBy";
+}
+@{
+    var data = (List<System.Linq.IGrouping<String, SportGames.Models.Team>>)ViewBag.Group;
+}
+<h2>Group Teams By Country </h2>
+
+
+
+<table id="myTable">
+    <tr>
+        <th>
+            Country
+        </th>
+        <th>
+           Team
+        </th>
+    </tr>
+    @foreach (var item in data)
+    {
+    <tr>
+
+        <td>
+            @item.Key
+        </td>
+        <td>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <br/>
+        </td>
+        <td>
+            
+            @foreach (var k in item)
+            {
+                @k.Name <br />
+            }
+            
+        </td>
+
+    </tr>
+    }
+</table>
