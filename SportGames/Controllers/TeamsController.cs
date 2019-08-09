@@ -10,18 +10,18 @@ using SportGames.Models;
 
 namespace SportGames.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class TeamsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [Authorize(Roles = "Admin")]
         // GET: Teams
         public ActionResult Index()
         {
             var team = db.Team.Include(t => t.Coach);
             return View(team.ToList());
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Teams/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,14 +36,14 @@ namespace SportGames.Controllers
             }
             return View(team);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Teams/Create
         public ActionResult Create()
         {
             ViewBag.CoachId = new SelectList(db.Coaches, "CoachId", "Name");
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Teams/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -61,7 +61,7 @@ namespace SportGames.Controllers
             ViewBag.CoachId = new SelectList(db.Coaches, "CoachId", "Name", team.CoachId);
             return View(team);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Teams/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -77,7 +77,7 @@ namespace SportGames.Controllers
             ViewBag.CoachId = new SelectList(db.Coaches, "CoachId", "Name", team.CoachId);
             return View(team);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Teams/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,7 +94,7 @@ namespace SportGames.Controllers
             ViewBag.CoachId = new SelectList(db.Coaches, "CoachId", "Name", team.CoachId);
             return View(team);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Teams/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -109,7 +109,7 @@ namespace SportGames.Controllers
             }
             return View(team);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Teams/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -120,7 +120,7 @@ namespace SportGames.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -129,7 +129,7 @@ namespace SportGames.Controllers
             }
             base.Dispose(disposing);
         }
-
+        
         public ActionResult TeamData(int? id)
         {
             if (id == null)

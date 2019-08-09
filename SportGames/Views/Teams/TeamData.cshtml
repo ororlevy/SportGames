@@ -12,7 +12,10 @@
     <div class="form-group">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-            <input type="text" id="Search" placeholder="Search" class="form-control" />
+            <input type="text" id="Search" onkeyup="myFunction()" placeholder="Enter the name" class="form-control" />
+            <input type="text" id="Age" onkeyup="myFunction()" placeholder="Enter the age" class="form-control" />
+            <input type="text" id="Number" onkeyup="myFunction()" placeholder="Number of the player" class="form-control" />
+
         </div>
     </div>
 </div>
@@ -20,16 +23,67 @@
 
 <h3 class="shadow">List of Players</h3>
 
-<table>
+<table id="myTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+
+
+    </tr>
+
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @item.Name
             </td>
-
+            <td>
+                @item.Age
+            </td>
+            <td>
+                @item.Number
+            </td>
 
         </tr>
     }
-
 </table>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    function myFunction() {
+        var input1, input2, input3, filter1, filter2, filter3, table, tr, td1, td2, td3, i, txtValue1, txtValue2, txtValue3;
+        input1 = document.getElementById("Search");
+        filter1 = input1.value.toUpperCase();
+        input2 = document.getElementById("Age");
+        filter2 = input2.value.toUpperCase();
+        input3 = document.getElementById("Number");
+        filter3 = input3.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td1 = tr[i].getElementsByTagName("td")[0];
+            td2 = tr[i].getElementsByTagName("td")[1];
+            td3 = tr[i].getElementsByTagName("td")[2];
+            if (td1) {
+                txtValue1 = td1.textContent || td1.innerText;
+                txtValue2 = td2.textContent || td2.innerText;
+                txtValue3 = td3.textContent || td3.innerText;
+                if (txtValue1.toUpperCase().indexOf(filter1) > -1
+                    && txtValue2.toUpperCase().indexOf(filter2) > -1
+                    && txtValue3.toUpperCase().indexOf(filter3) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
