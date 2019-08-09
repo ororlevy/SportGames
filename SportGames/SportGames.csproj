@@ -233,6 +233,12 @@
     <Content Include="Content\game.css" />
     <Content Include="Content\game.js" />
     <Content Include="Content\images\FC_Barcelona.png" />
+    <Content Include="Content\images\Jürgen_Klopp.jpg" />
+    <Content Include="Content\images\liverpool.jpg" />
+    <Content Include="Content\images\man_city.png" />
+    <Content Include="Content\images\man_u.png" />
+    <Content Include="Content\images\man_u_coach.jpg" />
+    <Content Include="Content\images\pep-guardiola_1.jpg" />
     <Content Include="Content\images\uefa-champion.jpg" />
     <Content Include="Content\images\uefa.png" />
     <Content Include="Content\images\Valverde.jpg" />
