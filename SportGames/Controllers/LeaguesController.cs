@@ -16,9 +16,17 @@ namespace SportGames.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Leagues
-        public ActionResult Index()
+        public ActionResult Index(String name, String country)
         {
-            return View(db.Leagues.ToList());
+
+            var leagues = db.Leagues.Where(p => (
+            (p.NameOfLeague.ToLower().Contains(name.ToLower()) || name == null || name == "") &&
+            (p.Country.ToLower().Contains(country.ToLower()) || country == null || country == "")));
+            if (Request.IsAjaxRequest())
+                return PartialView(leagues);
+
+
+            return View(leagues.ToList());
         }
 
         // GET: Leagues/Details/5

@@ -1,10 +1,13 @@
 *{
 	box-sizing: border-box
 }
+*{
+    color:white
+}
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
   float: left;
-  width: 25%;
+  width: 20%;
   padding: 30px;
   transition: transform .2s;  
 }
@@ -16,12 +19,13 @@
 * {
     box-sizing: border-box;
 }
-
+form-control{
+    background-color:black
+}
 /* Create two unequal columns that floats next to each other */
 .column2 {
     float: left;
     padding: 50px;
-
 }
 
 .left2 {
@@ -98,9 +102,13 @@ section {
     clear: both;
 }
 
-video{
-	display: block;
-	margin: 0 auto;
+search-input {
+    background-color: #505050;
+}
+
+video {
+    display: block;
+    margin: 0 auto;
 }
 .shadow {
     text-shadow: 2px 2px 5px red;
@@ -111,9 +119,7 @@ video{
 .La-Liga {
     background: url("/Content/images/La_Liga.png") no-repeat center
 }
-*{
-    color:white;
-}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

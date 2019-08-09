@@ -16,9 +16,29 @@ namespace SportGames.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Teams
-        public ActionResult Index()
+        public ActionResult Index(String nameofcoach, String nameofteam, String country,String wins,String losses)
         {
-            var team = db.Team.Include(t => t.Coach);
+            int num1 = 0;
+            int num2 = 0;
+            if (wins != null && !wins.Equals(""))
+            {
+                num1 = Convert.ToInt32(wins);
+            }
+            if (losses != null && !losses.Equals(""))
+            {
+                num2 = Convert.ToInt32(losses);
+            }
+            var team = db.Team.Where(p => (
+            (p.Coach.Name.ToLower().Contains(nameofcoach.ToLower()) || nameofcoach == null || nameofcoach == "") &&
+            (p.Name.ToLower().Contains(nameofteam.ToLower()) || nameofteam == null || nameofteam == "") &&
+            (p.Country.ToLower().Contains(country.ToLower()) || country == null || country == "") &&
+            (p.Wins == num1 || wins == null || wins == "") &&
+            (p.Losses == num2 || losses == null || losses == "")
+            )).Include(p => p.Coach);
+            if (Request.IsAjaxRequest())
+                return PartialView(team);
+
+
             return View(team.ToList());
         }
 
