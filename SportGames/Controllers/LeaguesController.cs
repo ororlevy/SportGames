@@ -10,13 +10,20 @@ using SportGames.Models;
 
 namespace SportGames.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
+    
     public class LeaguesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Leagues
+
+        
+        
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(String name, String country)
+
         {
 
             var leagues = db.Leagues.Where(p => (
@@ -30,6 +37,7 @@ namespace SportGames.Controllers
         }
 
         // GET: Leagues/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,6 +52,7 @@ namespace SportGames.Controllers
             return View(league);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Leagues/Create
         public ActionResult Create()
         {
@@ -53,6 +62,7 @@ namespace SportGames.Controllers
         // POST: Leagues/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LeagueId,NameOfLeague,Country,ImgURL,Description")] League league)
@@ -66,7 +76,7 @@ namespace SportGames.Controllers
 
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Leagues/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -81,7 +91,7 @@ namespace SportGames.Controllers
             }
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Leagues/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -97,7 +107,7 @@ namespace SportGames.Controllers
             }
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Leagues/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -112,7 +122,7 @@ namespace SportGames.Controllers
             }
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Leagues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -123,7 +133,7 @@ namespace SportGames.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -133,6 +143,7 @@ namespace SportGames.Controllers
             base.Dispose(disposing);
         }
 
+        
         public ActionResult LeagueData(int? id)
         {
             if (id == null)
