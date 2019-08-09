@@ -7,33 +7,53 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @style = "color:white;" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NameOfLeague)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameOfLeague)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LeagueId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LeagueId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LeagueId })
-        </td>
-    </tr>
+@using (Html.BeginForm("Index", "Leagues", FormMethod.Get))
+{
+    @Html.TextBox("name", "", new { placeholder = "Name of League", @style = "color:black;" })
+    @Html.TextBox("country", "", new { placeholder = "Country", @style = "color:black;" })
+    <input class="search-input" type="submit" style=color:black value="Search" />
 }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOfLeague)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameOfLeague)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImgURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LeagueId }, new { @style = "color:white;" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.LeagueId }, new { @style = "color:white;" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LeagueId }, new { @style = "color:white;" }) |
+                    @Html.ActionLink("view", "LeagueData", new { id = item.LeagueId }, new { @style = "color:white;" })
+                </td>
+            </tr>
+        }
+
+    </table>

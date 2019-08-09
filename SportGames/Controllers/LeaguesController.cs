@@ -10,17 +10,34 @@ using SportGames.Models;
 
 namespace SportGames.Controllers
 {
+    
+    
     public class LeaguesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Leagues
-        public ActionResult Index()
+
+        
+        
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Index(String name, String country)
+
         {
-            return View(db.Leagues.ToList());
+
+            var leagues = db.Leagues.Where(p => (
+            (p.NameOfLeague.ToLower().Contains(name.ToLower()) || name == null || name == "") &&
+            (p.Country.ToLower().Contains(country.ToLower()) || country == null || country == "")));
+            if (Request.IsAjaxRequest())
+                return PartialView(leagues);
+
+
+            return View(leagues.ToList());
         }
 
         // GET: Leagues/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,6 +52,7 @@ namespace SportGames.Controllers
             return View(league);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Leagues/Create
         public ActionResult Create()
         {
@@ -44,9 +62,10 @@ namespace SportGames.Controllers
         // POST: Leagues/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LeagueId,NameOfLeague,Country")] League league)
+        public ActionResult Create([Bind(Include = "LeagueId,NameOfLeague,Country,ImgURL,Description")] League league)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +76,7 @@ namespace SportGames.Controllers
 
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Leagues/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -72,13 +91,13 @@ namespace SportGames.Controllers
             }
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Leagues/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LeagueId,NameOfLeague,Country")] League league)
+        public ActionResult Edit([Bind(Include = "LeagueId,NameOfLeague,Country,ImgURL,Description")] League league)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +107,7 @@ namespace SportGames.Controllers
             }
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Leagues/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,7 +122,7 @@ namespace SportGames.Controllers
             }
             return View(league);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Leagues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -114,7 +133,7 @@ namespace SportGames.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -122,6 +141,22 @@ namespace SportGames.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        
+        public ActionResult LeagueData(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var q = (from tl in db.TeamLeagues
+                     join t in db.Team on tl.TeamId  equals t.TeamId
+                     where tl.LeagueId == id
+                     select t).ToList();
+            ViewBag.LeagueName = db.Leagues.Find(id);
+
+            return View(q);
         }
     }
 }

@@ -10,14 +10,34 @@ using SportGames.Models;
 
 namespace SportGames.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CoachesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Coaches
-        public ActionResult Index()
+        public ActionResult Index(String Name, String Wins, String Losses)
         {
-            return View(db.Coaches.ToList());
+
+            int num = 0;
+            if (Wins != null && !Wins.Equals(""))
+            {
+                num = Convert.ToInt32(Wins);
+            }
+            if (Losses != null && !Losses.Equals(""))
+            {
+                num = Convert.ToInt32(Losses);
+            }
+            var coaches = db.Coaches.Where(p => (
+            (p.Name.ToLower().Contains(Name.ToLower()) || Name == null || Name == "") &&
+            (p.Wins == num || Wins == null || Wins == "") &&
+            (p.Losses == num || Losses == null || Losses == "")
+            ));
+            if (Request.IsAjaxRequest())
+                return PartialView(coaches);
+
+
+            return View(coaches.ToList());
         }
 
         // GET: Coaches/Details/5
@@ -46,12 +66,14 @@ namespace SportGames.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CoachId,Name,Wins,Losses")] Coach coach)
+        public ActionResult Create([Bind(Include = "CoachId,Name,Wins,Losses,ImgURL")] Coach coach)
         {
             if (ModelState.IsValid)
             {
                 db.Coaches.Add(coach);
                 db.SaveChanges();
+
+                
                 return RedirectToAction("Index");
             }
 
@@ -78,7 +100,7 @@ namespace SportGames.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CoachId,Name,Wins,Losses")] Coach coach)
+        public ActionResult Edit([Bind(Include = "CoachId,Name,Wins,Losses,ImgURL")] Coach coach)
         {
             if (ModelState.IsValid)
             {

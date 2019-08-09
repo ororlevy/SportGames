@@ -16,6 +16,7 @@ namespace SportGames.Models
         public int CoachId { get; set; }
         public ICollection<Player> Players { get; set; }
         public ICollection<TeamLeague> TeamLeagues { get; set; }
+        public String ImgURL { get; set; }
 
     }
 }

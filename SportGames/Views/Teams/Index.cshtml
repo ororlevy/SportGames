@@ -5,17 +5,29 @@
 }
 
 <h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @style = "color:white;" })
 </p>
+
+@using (Html.BeginForm("Index", "Teams", FormMethod.Get))
+{
+    @Html.TextBox("nameOfCoach", "", new { placeholder = "Name of the Coach", @style = "color:black;" })
+    @Html.TextBox("nameOfTeam", "", new { placeholder = "Name of the Team", @style = "color:black;" })
+    @Html.TextBox("country", "", new { placeholder = "Country", @style = "color:black;" })
+    @Html.TextBox("Wins", "", new { placeholder = "Wins", @style = "color:black;" })
+    @Html.TextBox("Losses", "", new { placeholder = "Losses", @style = "color:black;" })<input class="search-input" type="submit" style='color:black' value="Search" />
+
+}
+
+
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Coach.Name)
+            Name Of Coach
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Name Of Team
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Country)
@@ -27,31 +39,40 @@
             @Html.DisplayNameFor(model => model.Losses)
         </th>
         <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgURL)
+        </th>
+        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Coach.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Wins)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Losses)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TeamId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TeamId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TeamId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Coach.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Losses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgURL)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TeamId }, new { @style = "color:white;" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TeamId }, new { @style = "color:white;" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TeamId }, new { @style = "color:white;" }) |
+                @Html.ActionLink("view", "TeamData", new { id = item.TeamId }, new { @style = "color:white;" })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -1,12 +1,136 @@
-﻿body {
+*{
+	box-sizing: border-box
+}
+*{
+    color:white
+}
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 20%;
+  padding: 30px;
+  transition: transform .2s;  
+}
+.column:hover {
+  -ms-transform: scale(1.15); /* IE 9 */
+  -webkit-transform: scale(1.15); /* Safari 3-8 */
+  transform: scale(1.15); 
+}
+* {
+    box-sizing: border-box;
+}
+form-control{
+    background-color:black;
+        currentColor:black;
+        color:black
+}
+.col-md-10 {
+    color: black
+   
+/* Create two unequal columns that floats next to each other */
+.column2 {
+    float: left;
+    padding: 50px;
+}
+
+.left2 {
+    width: 25%;
+}
+
+.right2 {
+    width: 75%;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+table{
+    border:0px
+}
+body {
+    background: url("/Content/images/kvEAT19.jpg") no-repeat center fixed;
+    background-size: cover;
     padding-top: 50px;
     padding-bottom: 20px;
 }
+section { 
+  display: block;
+  height: 300px;
+  width: 100%;
+  
+}
+.logo {
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 25px;
+    width: 200px
+}
+.multi {
+    column-count: 2;
+}
+/* Create two unequal columns that floats next to each other */
+.column1 {
+    float: left;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+    width: 25%;
+}
+
+.right {
+    width: 75%;
+}
+.container {
+    padding:10px 0px 20px 0px
+}
+.coach {
+    text-align: center;
+    text-shadow: 2px 2px 5px red;
+}
+.list {
+    display: list-item;
+}
+/* Clear floats after the columns */
+.aaa:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.multi:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+search-input {
+    background-color: #505050;
+}
+
+video {
+    display: block;
+    margin: 0 auto;
+}
+.shadow {
+    text-shadow: 2px 2px 5px red;
+}
+.aside {
+    padding: 0px 0px 15px 0px;
+}
+.La-Liga {
+    background: url("/Content/images/La_Liga.png") no-repeat center
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+   
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -22,3 +146,4 @@ select,
 textarea {
     max-width: 280px;
 }
+

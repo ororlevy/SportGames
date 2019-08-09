@@ -11,5 +11,7 @@ namespace SportGames.Models
         public string NameOfLeague { get; set; }
         public string Country { get; set; }
         public ICollection<TeamLeague> TeamLeagues { get; set; }
+        public String ImgURL { get; set; }
+        public String Description { get; set; }
     }
 }

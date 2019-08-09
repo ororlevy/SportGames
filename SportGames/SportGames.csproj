@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ASPSnippets.FaceBookAPI">
+      <HintPath>.\ASPSnippets.FaceBookAPI.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -206,6 +209,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908051437423_InitialCreate.cs" />
+    <Compile Include="Migrations\201908051437423_InitialCreate.Designer.cs">
+      <DependentUpon>201908051437423_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908080714119_Update-models.cs" />
+    <Compile Include="Migrations\201908080714119_Update-models.Designer.cs">
+      <DependentUpon>201908080714119_Update-models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Coach.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -218,20 +230,41 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\game.css" />
+    <Content Include="Content\game.js" />
+    <Content Include="Content\images\FC_Barcelona.png" />
+    <Content Include="Content\images\Jürgen_Klopp.jpg" />
+    <Content Include="Content\images\liverpool.jpg" />
+    <Content Include="Content\images\man_city.png" />
+    <Content Include="Content\images\man_u.png" />
+    <Content Include="Content\images\man_u_coach.jpg" />
+    <Content Include="Content\images\pep-guardiola_1.jpg" />
+    <Content Include="Content\images\uefa-champion.jpg" />
+    <Content Include="Content\images\uefa.png" />
+    <Content Include="Content\images\Valverde.jpg" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\bundesliga.png" />
+    <Content Include="Content\images\designstudiopremier-league.png" />
+    <Content Include="Content\images\israel.png" />
+    <Content Include="Content\images\kvEAT19.jpg" />
+    <Content Include="Content\images\La_Liga.png" />
+    <Content Include="Content\images\pl.png" />
+    <Content Include="Content\videos\UEFA Champions League Song - Lyrics with Highlights.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site_old.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\game.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -242,6 +275,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Game.cshtml" />
+    <Content Include="Views\Home\kvEAT19.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -255,7 +291,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index_old.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -302,6 +338,9 @@
     <Content Include="Views\Coaches\Details.cshtml" />
     <Content Include="Views\Coaches\Edit.cshtml" />
     <Content Include="Views\Coaches\Index.cshtml" />
+    <Content Include="Views\Leagues\LeagueData.cshtml" />
+    <Content Include="Views\Teams\TeamData.cshtml" />
+    <Content Include="Views\Teams\GroupBy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,6 +357,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908051437423_InitialCreate.resx">
+      <DependentUpon>201908051437423_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908080714119_Update-models.resx">
+      <DependentUpon>201908080714119_Update-models.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,18 +1,35 @@
 ﻿@model IEnumerable<SportGames.Models.Player>
 
+
 @{
     ViewBag.Title = "Index";
 }
+<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
 
-<h2>Index</h2>
+<h2>Players</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create New", "Create", null, new { @style = "color:white;" })
+
+    }
+
+    @using (Html.BeginForm("Index", "Players", FormMethod.Get))
+    {
+        @Html.TextBox("name", "", new { placeholder = "Name of the player", @style = "color:black;" })
+        @Html.TextBox("team", "", new { placeholder = "Team", @style = "color:black;" })
+        @Html.TextBox("age", "", new { placeholder = "Age of the player",  @style = "color:black;"  })<input class="search-input" type="submit" style='color:black' value="Search" />
+
+    }
+
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Team.Name)
+            Team
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -25,27 +42,63 @@
         </th>
         <th></th>
     </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td>
+                No Match Any Document
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Team.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Team.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Number)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlayerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PlayerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlayerId })
-        </td>
-    </tr>
-}
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PlayerId }, new { @style = "color:white;" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PlayerId }, new { @style = "color:white;" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PlayerId }, new { @style = "color:white;" })
+
+
+                    </td>
+                }
+            </tr>
+
+        }
+    }
+
 
 </table>
+<script>
+    $(function () {
+
+        $("#name,#team,#age").keyup(function (e) {
+            var n = $("#name").val();
+            var t = $("#team").val();
+            var a = $("#age").val();
+            $.get("/Players/Index?name=" + n + "&team=" + t + "&age=" + a, function (r) {
+                //update ui with results
+                $("#resultsTable").html(r);
+            });
+
+        });
+
+    });
+</script>

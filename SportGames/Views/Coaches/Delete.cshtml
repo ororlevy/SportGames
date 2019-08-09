@@ -35,6 +35,14 @@
             @Html.DisplayFor(model => model.Losses)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgURL)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
@@ -42,7 +50,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Index", null, new { @style = "color:white;" })
         </div>
     }
 </div>
