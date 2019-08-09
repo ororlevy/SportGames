@@ -149,7 +149,7 @@ namespace SportGames.Controllers
             }
             base.Dispose(disposing);
         }
-        
+
         public ActionResult TeamData(int? id)
         {
             if (id == null)
@@ -158,11 +158,20 @@ namespace SportGames.Controllers
             }
             var q = (from t in db.Team
                      join p in db.Players on t.TeamId equals p.TeamId
-                     where t.TeamId == id 
+                     where t.TeamId == id
                      select p).ToList();
             ViewBag.team = db.Team.Find(id);
             ViewBag.coach = db.Coaches.Find(db.Team.Find(id).CoachId);
             return View(q);
+        }
+
+        public ActionResult GroupBy()
+        {
+            var group = (from t in db.Team
+                        group t by t.Country into g
+                        select g).ToList() ;
+            ViewBag.Group = group;
+            return View(db.Team.ToList());
         }
     }
 }
