@@ -94,6 +94,8 @@ section {
 .list {
     display: list-item;
 }
+
+}
 /* Clear floats after the columns */
 .aaa:after {
     content: "";

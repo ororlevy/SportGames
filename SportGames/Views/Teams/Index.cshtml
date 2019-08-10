@@ -5,9 +5,15 @@
 }
 
 <h2>Index</h2>
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @style = "color:white;" })
-</p>
+<nav>
+    <a>
+        @Html.ActionLink("Create New", "Create", null, new { @style = "color:white;" }) ||
+    </a>
+
+    <a>
+        @Html.ActionLink("Group by Contry", "GroupBy", null, new { @style = "color:white;" })
+    </a>
+</nav>
 
 @using (Html.BeginForm("Index", "Teams", FormMethod.Get))
 {
