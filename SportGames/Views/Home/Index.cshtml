@@ -1,11 +1,11 @@
+using  System.Web.UI.Page
+
 <!DOCTYPE html>
 <html>
 @{
     ViewBag.Title = "ComodoGames";
 }
-@{
-    
-}
+
 <body>
     <link rel="stylesheet" type="text/css" href="~/Content/Site.css" media="screen" />
     <section>
@@ -17,35 +17,60 @@
     </section>
     <div class="row">
         <div class="column">
-            <a href="@Url.Action("LeagueData","Leagues",new { id=3})">
+            <a href="@Url.Action("LeagueData", "Leagues", new { id = 3 })">
                 <img src="~/Content/images/bundesliga.png" alt="bundesliga" width="150" height="150">
             </a>
         </div>
         <div class="column">
-            <a href="@Url.Action("LeagueData","Leagues",new { id=4})">
-                <img src="~/Content/images/israel.png"  alt="israel" width="150" height="150">
+            <a href="@Url.Action("LeagueData", "Leagues", new { id = 4 })">
+                <img src="~/Content/images/israel.png" alt="israel" width="150" height="150">
             </a>
         </div>
         <div class="column">
-            <a href="@Url.Action("LeagueData","Leagues",new { id=5})">
+            <a href="@Url.Action("LeagueData", "Leagues", new { id = 5 })">
                 <img src="/Content/images/uefa.png" alt="champion" width="150" height="150">
             </a>
         </div>
         <div class="column">
-            <a href="@Url.Action("LeagueData","Leagues",new { id=1})">
+            <a href="@Url.Action("LeagueData", "Leagues", new { id = 1 })">
                 <img src="/Content/images/La_Liga.png" alt="La_Liga" width="150" height="150">
             </a>
         </div>
         <div class="column">
-            <a href="@Url.Action("LeagueData","Leagues",new { id=2})">
+            <a href="@Url.Action("LeagueData", "Leagues", new { id = 2 })">
                 <img src="~/Content/images/pl.png" alt="pl" width="150" height="150">
             </a>
         </div>
     </div>
 
 
+@{
+    var request = (HttpWebRequest)WebRequest.Create("https://football-prediction-api.p.rapidapi.com/api/v2/predictions?iso_date=2018-12-01&market=classic&federation=UEFA");
+    request.Headers.Set("X-RapidAPI-Host", "football-prediction-api.p.rapidapi.com");
+    request.Headers.Set("X-RapidAPI-Key", "3b48266e62msh23f92d9a4655c00p16b274jsn6d72cacab6e8");
 
+    var response = (HttpWebResponse)request.GetResponse();
+    string responseString;
+    using (var stream = response.GetResponseStream())
+    {
+        using (var reader = new StreamReader(stream))
+        {
+            responseString = reader.ReadToEnd();
+        }
+    }
 
-
+    var details = Newtonsoft.Json.Linq.JObject.Parse(responseString);
+    var example2Model = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<SportGames.Models.MyClass.RootObject>(responseString);
+    var ok2 = "";
+    foreach (var item in example2Model.data)
+    {
+        ok2 += item.home_team + " VS " + item.away_team + " SCORE:" + item.result+" || ";
+    }
+   
+    var ok = (string.Concat("The Team: ", details["data"], " vs The Team:  " + details["away_team"]));
+}
+    <p class="API" style="background-color:black">
+        <marquee>@ok2</marquee>
+    </p>
 </body>
 </html>
