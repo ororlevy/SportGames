@@ -15,11 +15,14 @@ namespace SportGames.Controllers
     public class LeaguesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public static int laLigaConunter=0;
+        public static int bonConunter = 0;
+        public static int premConunter = 0;
+        public static int ilsConunter = 0;
         // GET: Leagues
 
-        
-        
+
+
 
         [Authorize(Roles = "Admin")]
         public ActionResult Index(String name, String country)
@@ -150,12 +153,35 @@ namespace SportGames.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            switch(id)
+            {
+                case 1:laLigaConunter++;
+                    ViewBag.Count = laLigaConunter;
+                    break;
+                case 2:premConunter++;
+                    ViewBag.Count = premConunter;
+                    break;
+                case 3:bonConunter++;
+                    ViewBag.Count = bonConunter;
+                    break;
+                case 4:ilsConunter++;
+                    ViewBag.Count = ilsConunter;
+                    break;
+            }
             var q = (from tl in db.TeamLeagues
                      join t in db.Team on tl.TeamId  equals t.TeamId
                      where tl.LeagueId == id
                      select t).ToList();
             ViewBag.LeagueName = db.Leagues.Find(id);
+            var top = (from tl in db.TeamLeagues
+                          join t in db.Team on tl.TeamId equals t.TeamId
+                          where tl.LeagueId == id
+                          select t).ToList();
 
+            ViewBag.Top = (from i in top
+                          orderby i.Wins descending
+                          select i).Take(3).ToArray();
+            ViewBag.Id = id;
             return View(q);
         }
     }

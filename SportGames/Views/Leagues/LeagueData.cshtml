@@ -8,8 +8,27 @@
     var data = ViewBag.LeagueName;
 
 }
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+
+
+
+        function showPopup() {
+            //var text="It seems you like ";
+            
+            //$("#ModalTitle").html(text)
+            $("#MyModal").modal();
+
+
+        }
+
+
+
+    </script>
+
 <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
-<img class="logo" src=@data.ImgURL alt="pl" width="200" height="200">
+<img class="logo" src=@data.ImgURL alt="pl" width="200" height="200"  >
 
 <div class="container">
     <div class="form-group">
@@ -18,7 +37,7 @@
             <input type="text" id="Search" onkeyup="myFunction()" placeholder="Enter the name" class="form-control" />
             <input type="text" id="Wins" onkeyup="myFunction()" placeholder="Number of Wins" class="form-control" />
             <input type="text" id="Losses" onkeyup="myFunction()" placeholder="Number of Losses" class="form-control" />
-           
+
         </div>
     </div>
 </div>
@@ -45,7 +64,7 @@
 
             @foreach (var item in Model)
             {
-                <tr class="myTable" >
+                <tr class="myTable">
                     <td onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
                         @item.Name
                     </td>
@@ -66,9 +85,51 @@
         </section>
     </div>
 </div>
+@{
+    var count = ViewBag.Count;
+    var top = ViewBag.Top;
+}
+@if (count > 1)
+{
+    <input type="button" onclick="showPopup()" value="For YOU!"/>
+}
 
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"> It seems you like @data.NameOfLeague </h4>
+            </div>
+            <div class="modal-body">
+                SO...Just for you!
+                The top 3 of the league are:
+                @foreach (var item in top)
+    {   
+                <table >
+                    <tr >
+                        <td class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
+                            @item.Name
+                        </td>
+                        <td class="tablebody">
+                            @item.Wins
+                        </td>
+                        <td class="tablebody">
+                            @item.Losses
+                        </td>
+
+                    </tr>
+                </table>
+                    }
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
     function myFunction() {
         var input1, input2, input3, filter1, filter2, filter3, table, tr, td1, td2, td3, i, txtValue1, txtValue2, txtValue3;
@@ -98,7 +159,11 @@
             }
         }
     }
+
 </script>
+
+
+
 
 
 
