@@ -164,5 +164,13 @@ namespace SportGames.Controllers
             ViewBag.coach = db.Coaches.Find(db.Team.Find(id).CoachId);
             return View(q);
         }
+        public ActionResult GroupBy()
+        {
+            var group = (from t in db.Team
+                         group t by t.Country into g
+                         select g).ToList();
+            ViewBag.Group = group;
+            return View(db.Team.ToList());
+        }
     }
 }

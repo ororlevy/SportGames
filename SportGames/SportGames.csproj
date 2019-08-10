@@ -334,6 +334,7 @@
     <Content Include="Views\Coaches\Index.cshtml" />
     <Content Include="Views\Leagues\LeagueData.cshtml" />
     <Content Include="Views\Teams\TeamData.cshtml" />
+    <Content Include="Views\Teams\GroupBy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
