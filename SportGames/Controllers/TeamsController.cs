@@ -172,5 +172,48 @@ namespace SportGames.Controllers
             ViewBag.Group = group;
             return View(db.Team.ToList());
         }
+
+        public ActionResult Chart()
+        {
+            ViewBag.Team = db.Team.ToList();
+            ViewBag.League = db.Leagues.ToList();
+            var Bondo=  (from tl in db.TeamLeagues
+                                   join t in db.Team on tl.TeamId equals t.TeamId
+                                   where tl.LeagueId==3
+                                   select t).ToList();
+            ViewBag.bl = (from i in Bondo
+                    orderby i.Wins descending
+                    select i).Take(3).ToArray();
+
+            var laliga = (from tl in db.TeamLeagues
+                             join t in db.Team on tl.TeamId equals t.TeamId
+                             where tl.LeagueId == 1
+                             select t).ToList();
+           ViewBag.ll = (from i in laliga
+                     orderby i.Wins descending
+                     select i).Take(3).ToArray();
+
+            var israel = (from tl in db.TeamLeagues
+                             join t in db.Team on tl.TeamId equals t.TeamId
+                             where tl.LeagueId == 4
+                             select t).ToList();
+
+            ViewBag.il = (from i in israel
+                      orderby i.Wins descending
+                     select i).Take(3).ToArray();
+
+            var premir = (from tl in db.TeamLeagues
+                             join t in db.Team on tl.TeamId equals t.TeamId
+                             where tl.LeagueId == 2
+                             select t).ToList();
+
+            ViewBag.pr = (from i in premir
+                      orderby i.Wins descending
+                     select i).Take(3).ToArray();
+
+            return View();
+        }
+
+
     }
 }
