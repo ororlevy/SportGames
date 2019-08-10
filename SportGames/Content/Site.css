@@ -148,3 +148,13 @@ textarea {
     max-width: 280px;
 }
 
+.modal-body {
+    color:black !important;
+}
+#ModalTitle {
+    color:black;
+}
+.tablebody
+{
+    color:black !important;
+}
