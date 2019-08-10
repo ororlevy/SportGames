@@ -26,6 +26,7 @@
                     <li>@Html.ActionLink("Home", "index", "Home")</li>
                     <li>@Html.ActionLink("Play Soccer", "Game", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Statistics", "Chart", "Teams")</li>
                     @if (User.IsInRole("Admin"))
                     {
                         @Html.Partial("_AdminMenu")

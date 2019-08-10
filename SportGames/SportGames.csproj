@@ -288,36 +288,60 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\images\ui-bg_diagonals-thick_8_333333_40x40.png" />
-    <Content Include="Content\css\images\ui-bg_glass_40_111111_1x400.png" />
-    <Content Include="Content\css\images\ui-bg_glass_55_1c1c1c_1x400.png" />
-    <Content Include="Content\css\images\ui-bg_highlight-hard_100_f9f9f9_1x100.png" />
-    <Content Include="Content\css\images\ui-bg_highlight-hard_40_aaaaaa_1x100.png" />
-    <Content Include="Content\css\images\ui-bg_highlight-soft_50_aaaaaa_1x100.png" />
-    <Content Include="Content\css\images\ui-bg_inset-hard_45_cd0a0a_1x100.png" />
-    <Content Include="Content\css\images\ui-bg_inset-hard_55_ffeb80_1x100.png" />
-    <Content Include="Content\css\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\css\images\ui-icons_4ca300_256x240.png" />
-    <Content Include="Content\css\images\ui-icons_bbbbbb_256x240.png" />
-    <Content Include="Content\css\images\ui-icons_ededed_256x240.png" />
-    <Content Include="Content\css\images\ui-icons_ffcf29_256x240.png" />
-    <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\css\jquery-ui.css" />
-    <Content Include="Content\css\jquery-ui.min.css" />
+
+    <Content Include="App_Data\aspnet-SportGames-20190805030528.ldf">
+      <DependentUpon>aspnet-SportGames-20190805030528.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\aspnet-SportGames-20190805030528.mdf" />
+    <Content Include="App_Data\aspnet-SportGames-20190805030528_log.ldf">
+      <DependentUpon>aspnet-SportGames-20190805030528.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\250px-Maccabi_tlv_fc.png" />
+    <Content Include="Content\Borussia_Dortmund_logo.png" />
+    <Content Include="Content\Bruno_Labbadia.jpg" />
+    <Content Include="Content\Diego Pablo Simeone.jpg" />
+
     <Content Include="Content\game.css" />
     <Content Include="Content\game.js" />
+    <Content Include="Content\images\250px-Maccabi_tlv_fc.png" />
+    <Content Include="Content\images\arsenal.png" />
+    <Content Include="Content\images\Atletico_Madrid_2017.png" />
+    <Content Include="Content\images\Background.png" />
+    <Content Include="Content\images\Bayern_München.png" />
+    <Content Include="Content\images\Borussia_Dortmund_logo.png" />
+    <Content Include="Content\images\Borussia_Mönchengladbach.png" />
+    <Content Include="Content\images\Bruno_Labbadia.jpg" />
     <Content Include="Content\images\celta vigo.png" />
-    <Content Include="Content\images\Diego Pablo Simeone.jpg" />
+    <Content Include="Content\images\Celta_de_Vigo.png" />
+    <Content Include="Content\images\Diego.jpg" />
+    <Content Include="Content\images\Dieter_Hecking.jpg" />
     <Content Include="Content\images\FC_Barcelona.png" />
+    <Content Include="Content\images\Hapoel_Tel_Aviv.png" />
     <Content Include="Content\images\Jürgen_Klopp.jpg" />
     <Content Include="Content\images\liverpool.jpg" />
+    <Content Include="Content\images\Lucien_Favre.jpg" />
+    <Content Include="Content\images\Maccabi-h.png" />
     <Content Include="Content\images\man_city.png" />
     <Content Include="Content\images\man_u.png" />
     <Content Include="Content\images\man_u_coach.jpg" />
+    <Content Include="Content\images\Marco_Balbul.jpg" />
+    <Content Include="Content\images\Miguel_Cardoso.jpeg" />
+    <Content Include="Content\images\niko.jpg" />
+    <Content Include="Content\images\Nisso_Avitan.jpeg" />
     <Content Include="Content\images\pep-guardiola_1.jpg" />
+    <Content Include="Content\images\Real_Madrid.png" />
     <Content Include="Content\images\uefa-champion.jpg" />
     <Content Include="Content\images\uefa.png" />
+    <Content Include="Content\images\uefa_ps.jpeg" />
+    <Content Include="Content\images\uefa_ps.png" />
+    <Content Include="Content\images\unai_emery.jpg" />
     <Content Include="Content\images\Valverde.jpg" />
+    <Content Include="Content\images\Vladimir_Ivić_%282016%29.png" />
+    <Content Include="Content\images\wolfsburg.jpg" />
+    <Content Include="Content\images\zidan.jpg" />
+    <Content Include="Content\Lucien_Favre.jpg" />
+    <Content Include="Content\Maccabi-h.png" />
+    <Content Include="Content\Marco Balbul.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -329,7 +353,10 @@
     <Content Include="Content\images\kvEAT19.jpg" />
     <Content Include="Content\images\La_Liga.png" />
     <Content Include="Content\images\pl.png" />
+    <Content Include="Content\uefa_ps.jpeg" />
     <Content Include="Content\videos\UEFA Champions League Song - Lyrics with Highlights.mp4" />
+    <Content Include="Content\Vladimir_Ivić_%282016%29.png" />
+    <Content Include="Content\wolfsburg.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -419,9 +446,7 @@
     <Content Include="Views\Teams\GroupBy.cshtml" />
     <Content Include="Views\Teams\Chart.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
