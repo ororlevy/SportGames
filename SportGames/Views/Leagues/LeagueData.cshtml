@@ -92,6 +92,11 @@
     </div>
 </div>
 
+@if (count > 1)
+{
+    <input class="glow" style="background-color:black" type="button" onclick="showPopup()" value="For YOU!"/>
+}
+
 
 
 <div class="modal fade" id="MyModal">
@@ -105,22 +110,24 @@
                 SO...Just for you!
                 The top 3 of the league are:
                 @foreach (var item in top)
-                {
-                    <table>
-                        <tr>
-                            <td class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
-                                @item.Name
-                            </td>
-                            <td class="tablebody">
-                                @item.Wins
-                            </td>
-                            <td class="tablebody">
-                                @item.Losses
-                            </td>
 
-                        </tr>
-                    </table>
-                }
+    {   
+                <table >
+                    <tr style="cursor: pointer;" >
+                        <td class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
+                            @item.Name
+                        </td>
+                        <td class="tablebody">
+                            @item.Wins
+                        </td>
+                        <td class="tablebody">
+                            @item.Losses
+                        </td>
+
+                    </tr>
+                </table>
+                    }
+               
 
             </div>
         </div>
