@@ -177,17 +177,28 @@ namespace SportGames.Controllers
         {
             ViewBag.Team = db.Team.ToList();
             ViewBag.League = db.Leagues.ToList();
+            League Bo = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "Bundesliga");
+            League La = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "La Liga Santander");
+            League Il = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "Israeli Premier League");
+            League Pr = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "Premier League");
+            if (Bo == null || La==null || Il==null||Pr==null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            int BoID = Bo.LeagueId;
+            int LaID = La.LeagueId;
+            int IlID = Il.LeagueId;
+            int PrID = Pr.LeagueId;
+            
             var Bondo=  (from tl in db.TeamLeagues
                                    join t in db.Team on tl.TeamId equals t.TeamId
-                                   where tl.LeagueId==3
-                                   select t).ToList();
+                                   where tl.LeagueId== BoID
+                         select t).ToList();
             ViewBag.bl = (from i in Bondo
                     orderby i.Wins descending
                     select i).Take(3).ToArray();
 
             var laliga = (from tl in db.TeamLeagues
                              join t in db.Team on tl.TeamId equals t.TeamId
-                             where tl.LeagueId == 1
+                             where tl.LeagueId == LaID
                              select t).ToList();
            ViewBag.ll = (from i in laliga
                      orderby i.Wins descending
@@ -195,7 +206,7 @@ namespace SportGames.Controllers
 
             var israel = (from tl in db.TeamLeagues
                              join t in db.Team on tl.TeamId equals t.TeamId
-                             where tl.LeagueId == 4
+                             where tl.LeagueId == IlID
                              select t).ToList();
 
             ViewBag.il = (from i in israel
@@ -204,7 +215,7 @@ namespace SportGames.Controllers
 
             var premir = (from tl in db.TeamLeagues
                              join t in db.Team on tl.TeamId equals t.TeamId
-                             where tl.LeagueId == 2
+                             where tl.LeagueId == PrID
                              select t).ToList();
 
             ViewBag.pr = (from i in premir

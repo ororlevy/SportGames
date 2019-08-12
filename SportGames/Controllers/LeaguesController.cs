@@ -19,6 +19,7 @@ namespace SportGames.Controllers
         public static int bonConunter = 0;
         public static int premConunter = 0;
         public static int ilsConunter = 0;
+        public static int interConunter = 0;
         // GET: Leagues
 
 
@@ -147,36 +148,49 @@ namespace SportGames.Controllers
         }
 
         
-        public ActionResult LeagueData(int? id)
+        public ActionResult LeagueData(String id)
         {
-            if (id == null)
+            if (id==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            switch(id)
+            League league = db.Leagues.SingleOrDefault(l => l.NameOfLeague == id);
+            if (league == null)
             {
-                case 1:laLigaConunter++;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.LeagueName = league;
+            switch (id)
+            {
+                case "La Liga Santander":laLigaConunter++;
                     ViewBag.Count = laLigaConunter;
                     break;
-                case 2:premConunter++;
+                case "Premier League":
+                    premConunter++;
                     ViewBag.Count = premConunter;
                     break;
-                case 3:bonConunter++;
+                case "Bundesliga":
+                    bonConunter++;
                     ViewBag.Count = bonConunter;
                     break;
-                case 4:ilsConunter++;
+                case "Israeli Premier League":
+                    ilsConunter++;
                     ViewBag.Count = ilsConunter;
+                    break;
+                 case "uefa champions league":
+                    interConunter++;
+                    ViewBag.Count = interConunter;
                     break;
             }
             var q = (from tl in db.TeamLeagues
                      join t in db.Team on tl.TeamId  equals t.TeamId
-                     where tl.LeagueId == id
+                     where tl.LeagueId == league.LeagueId
                      select t).ToList();
-            ViewBag.LeagueName = db.Leagues.Find(id);
+            
             var top = (from tl in db.TeamLeagues
                           join t in db.Team on tl.TeamId equals t.TeamId
-                          where tl.LeagueId == id
-                          select t).ToList();
+                          where tl.LeagueId == league.LeagueId
+                       select t).ToList();
 
             ViewBag.Top = (from i in top
                           orderby i.Wins descending
