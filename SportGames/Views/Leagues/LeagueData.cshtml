@@ -6,17 +6,23 @@
 
 @{
     var data = ViewBag.LeagueName;
+    var count = ViewBag.Count;
+    var top = ViewBag.Top;
+    
 
 }
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript">
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
 
-
+        $(document).ready(function () {
+            if ( @count> 1)
+                showPopup();
+        });
 
         function showPopup() {
             //var text="It seems you like ";
-            
+
             //$("#ModalTitle").html(text)
             $("#MyModal").modal();
 
@@ -25,10 +31,10 @@
 
 
 
-    </script>
+</script>
 
 <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
-<img class="logo" src=@data.ImgURL alt="pl" width="200" height="200"  >
+<img class="logo" src=@data.ImgURL alt="pl" width="200" height="200">
 
 <div class="container">
     <div class="form-group">
@@ -85,14 +91,7 @@
         </section>
     </div>
 </div>
-@{
-    var count = ViewBag.Count;
-    var top = ViewBag.Top;
-}
-@if (count > 1)
-{
-    <input type="button" onclick="showPopup()" value="For YOU!"/>
-}
+
 
 
 <div class="modal fade" id="MyModal">
@@ -106,23 +105,23 @@
                 SO...Just for you!
                 The top 3 of the league are:
                 @foreach (var item in top)
-    {   
-                <table >
-                    <tr >
-                        <td class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
-                            @item.Name
-                        </td>
-                        <td class="tablebody">
-                            @item.Wins
-                        </td>
-                        <td class="tablebody">
-                            @item.Losses
-                        </td>
+                {
+                    <table>
+                        <tr>
+                            <td class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
+                                @item.Name
+                            </td>
+                            <td class="tablebody">
+                                @item.Wins
+                            </td>
+                            <td class="tablebody">
+                                @item.Losses
+                            </td>
 
-                    </tr>
-                </table>
-                    }
-               
+                        </tr>
+                    </table>
+                }
+
             </div>
         </div>
     </div>
