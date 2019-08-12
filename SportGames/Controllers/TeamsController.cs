@@ -164,6 +164,7 @@ namespace SportGames.Controllers
             ViewBag.coach = db.Coaches.Find(db.Team.Find(id).CoachId);
             return View(q);
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult GroupBy()
         {
             var group = (from t in db.Team
