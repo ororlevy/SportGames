@@ -32,13 +32,15 @@ namespace SportGames.Controllers
         }
 
         // GET: TeamLeagues/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? idT, int? idL)
         {
-            if (id == null)
+            if (idT == null && idL == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TeamLeague teamLeague = db.TeamLeagues.Find(id);
+            TeamLeague teamLeague = db.TeamLeagues.Find(idT,idL);
+            ViewBag.Team = db.Team.Find(idT);
+            ViewBag.League = db.Leagues.Find(idL);
             if (teamLeague == null)
             {
                 return HttpNotFound();
@@ -74,13 +76,13 @@ namespace SportGames.Controllers
         }
 
         // GET: TeamLeagues/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? idT, int? idL)
         {
-            if (id == null)
+            if (idT == null&& idL==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TeamLeague teamLeague = db.TeamLeagues.Find(id);
+            TeamLeague teamLeague = db.TeamLeagues.Find(idT,idL);
             if (teamLeague == null)
             {
                 return HttpNotFound();
@@ -95,11 +97,18 @@ namespace SportGames.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TeamId,LeagueId")] TeamLeague teamLeague)
+        public ActionResult Edit([Bind(Include = "TeamId,LeagueId")] TeamLeague teamLeague ,int? idT, int? idL)
         {
+            TeamLeague teamLeagueOld = db.TeamLeagues.Find(idT, idL);
+            if (idT == null && idL == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (ModelState.IsValid)
             {
-                db.Entry(teamLeague).State = EntityState.Modified;
+                db.TeamLeagues.Remove(teamLeagueOld);
+                db.TeamLeagues.Add(teamLeague);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -109,13 +118,15 @@ namespace SportGames.Controllers
         }
 
         // GET: TeamLeagues/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? idT ,int? idL)
         {
-            if (id == null)
+            if (idT == null &&idL==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TeamLeague teamLeague = db.TeamLeagues.Find(id);
+            TeamLeague teamLeague = db.TeamLeagues.Find(idT,idL);
+            ViewBag.Team = db.Team.Find(idT);
+            ViewBag.League = db.Leagues.Find(idL);
             if (teamLeague == null)
             {
                 return HttpNotFound();
@@ -126,9 +137,9 @@ namespace SportGames.Controllers
         // POST: TeamLeagues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmedint(int? idT ,int? idL)
         {
-            TeamLeague teamLeague = db.TeamLeagues.Find(id);
+            TeamLeague teamLeague = db.TeamLeagues.Find(idT, idL);
             db.TeamLeagues.Remove(teamLeague);
             db.SaveChanges();
             return RedirectToAction("Index");
