@@ -108,7 +108,7 @@
                 @foreach (var item in top)
     {   
                 <table >
-                    <tr >
+                    <tr style="cursor: pointer;" >
                         <td class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
                             @item.Name
                         </td>

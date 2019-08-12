@@ -167,12 +167,14 @@ textarea {
 }
 
 .modal-body {
-    color:black !important;
+    color: black !important;
+    cursor: pointer !important;
 }
 #ModalTitle {
-    color:black;
+    color: black;
+    cursor: pointer !important;
 }
-.tablebody
-{
-    color:black !important;
+.tablebody {
+    color: black !important;
+    cursor: pointer !important;
 }
