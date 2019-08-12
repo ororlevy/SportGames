@@ -55,7 +55,7 @@
     <div class="column1 left" style="background-color:transparent;">
         <table id="myTable">
             <tr>
-                <th>
+                <th >
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
@@ -71,7 +71,7 @@
             @foreach (var item in Model)
             {
                 <tr class="myTable">
-                    <td onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
+                    <td style="cursor: pointer;"  class="modal-body2" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
                         @item.Name
                     </td>
                     <td>
@@ -113,8 +113,8 @@
 
     {   
                 <table >
-                    <tr style="cursor: pointer;" >
-                        <td class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId })'">
+                    <tr >
+                        <td  style="cursor: pointer;" class="modal-body" onclick="location.href='@Url.Action("TeamData","Teams",new { id = item.TeamId})'">
                             @item.Name
                         </td>
                         <td class="tablebody">

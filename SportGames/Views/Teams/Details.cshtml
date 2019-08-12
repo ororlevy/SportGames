@@ -11,14 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Coach.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Coach.Name)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -61,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TeamId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeamId }, new { @style = "color:white;" }) |
     @Html.ActionLink("Back to List", "Index", null, new { @style = "color:white;" })
 </p>

@@ -5,7 +5,10 @@
 }
 
 <h2>Details</h2>
-
+@{
+    var team = ViewBag.Team;
+    var league = ViewBag.League;
+}
 <div>
     <h4>TeamLeague</h4>
     <hr />
@@ -15,7 +18,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.League.NameOfLeague)
+            @league.NameOfLeague
         </dd>
 
         <dt>
@@ -23,12 +26,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Team.Name)
+            @team.Name
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new { @style = "color:white;" }) |
     @Html.ActionLink("Back to List", "Index", null, new { @style = "color:white;" })
 </p>

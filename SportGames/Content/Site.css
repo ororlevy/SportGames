@@ -85,7 +85,7 @@ section {
     width: 75%;
 }
 .container {
-    padding:10px 0px 20px 0px
+    padding:0px 0px 0px 0px
 }
 .coach {
     text-align: center;
@@ -168,23 +168,34 @@ textarea {
 
 .modal-body {
     color: black !important;
-    cursor: pointer !important;
+    vertical-align: bottom !important;
 }
+    .modal-body:hover {
+        border-bottom: 1px solid black;
+    }
+.modal-body2 {
+    vertical-align: bottom !important;
+}
+
+    .modal-body2:hover {
+        border-bottom: 1px solid white;
+    }
 #ModalTitle {
     color: black;
-    cursor: pointer !important;
+  
 }
 
 .tablebody
 {
     color:black !important;
 }
-option {
+#TeamId option {
     /* Whatever color  you want */
     background-color: #82caff;
 
-.tablebody {
-    color: black !important;
-    cursor: pointer !important;
+    color:black !important;
+}
+
 
 }
+

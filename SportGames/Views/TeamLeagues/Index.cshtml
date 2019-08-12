@@ -39,9 +39,9 @@
                 @Html.DisplayFor(modelItem => item.Team.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @style = "color:white;" }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @style = "color:white;" }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @style = "color:white;" })
+                @Html.ActionLink("Edit", "Edit", new { idT = item.TeamId, idL = item.LeagueId }, new { @style = "color:white;" }) |
+                @Html.ActionLink("Details", "Details", new { idT=item.TeamId,idL=item.LeagueId }, new { @style = "color:white;" }) |
+                @Html.ActionLink("Delete", "Delete", new { idT = item.TeamId, idL = item.LeagueId }, new { @style = "color:white;" })
             </td>
         </tr>
     }
