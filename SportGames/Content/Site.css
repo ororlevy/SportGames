@@ -179,12 +179,8 @@ textarea {
 {
     color:black !important;
 }
-option {
+#TeamId option {
     /* Whatever color  you want */
     background-color: #82caff;
-
-.tablebody {
-    color: black !important;
-    cursor: pointer !important;
-
+    color:black !important;
 }
