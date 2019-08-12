@@ -288,7 +288,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="App_Data\aspnet-SportGames-20190805030528.ldf">
       <DependentUpon>aspnet-SportGames-20190805030528.mdf</DependentUpon>
     </Content>
@@ -300,7 +299,6 @@
     <Content Include="Content\Borussia_Dortmund_logo.png" />
     <Content Include="Content\Bruno_Labbadia.jpg" />
     <Content Include="Content\Diego Pablo Simeone.jpg" />
-
     <Content Include="Content\game.css" />
     <Content Include="Content\game.js" />
     <Content Include="Content\images\250px-Maccabi_tlv_fc.png" />
@@ -317,9 +315,11 @@
     <Content Include="Content\images\Dieter_Hecking.jpg" />
     <Content Include="Content\images\FC_Barcelona.png" />
     <Content Include="Content\images\Hapoel_Tel_Aviv.png" />
+    <Content Include="Content\images\Igor.jpg" />
     <Content Include="Content\images\Jürgen_Klopp.jpg" />
     <Content Include="Content\images\liverpool.jpg" />
     <Content Include="Content\images\Lucien_Favre.jpg" />
+    <Content Include="Content\images\igor_team.jpg" />
     <Content Include="Content\images\Maccabi-h.png" />
     <Content Include="Content\images\man_city.png" />
     <Content Include="Content\images\man_u.png" />

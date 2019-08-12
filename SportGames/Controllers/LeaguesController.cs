@@ -162,7 +162,7 @@ namespace SportGames.Controllers
             ViewBag.LeagueName = league;
             switch (id)
             {
-                case "La Liga Santander":laLigaConunter++;
+                case "La Liga":laLigaConunter++;
                     ViewBag.Count = laLigaConunter;
                     break;
                 case "Premier League":
@@ -177,7 +177,7 @@ namespace SportGames.Controllers
                     ilsConunter++;
                     ViewBag.Count = ilsConunter;
                     break;
-                 case "uefa champions league":
+                 case "Champions League":
                     interConunter++;
                     ViewBag.Count = interConunter;
                     break;

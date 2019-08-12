@@ -20,18 +20,19 @@ namespace SportGames.Controllers
         {
 
             int num = 0;
+            int num2 = 0;
             if (Wins != null && !Wins.Equals(""))
             {
                 num = Convert.ToInt32(Wins);
             }
             if (Losses != null && !Losses.Equals(""))
             {
-                num = Convert.ToInt32(Losses);
+                num2 = Convert.ToInt32(Losses);
             }
             var coaches = db.Coaches.Where(p => (
             (p.Name.ToLower().Contains(Name.ToLower()) || Name == null || Name == "") &&
             (p.Wins == num || Wins == null || Wins == "") &&
-            (p.Losses == num || Losses == null || Losses == "")
+            (p.Losses == num2 || Losses == null || Losses == "")
             ));
             if (Request.IsAjaxRequest())
                 return PartialView(coaches);

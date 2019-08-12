@@ -178,7 +178,7 @@ namespace SportGames.Controllers
             ViewBag.Team = db.Team.ToList();
             ViewBag.League = db.Leagues.ToList();
             League Bo = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "Bundesliga");
-            League La = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "La Liga Santander");
+            League La = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "La Liga");
             League Il = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "Israeli Premier League");
             League Pr = db.Leagues.SingleOrDefault(l => l.NameOfLeague == "Premier League");
             if (Bo == null || La==null || Il==null||Pr==null)
