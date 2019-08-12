@@ -174,7 +174,17 @@ textarea {
     color: black;
     cursor: pointer !important;
 }
+
+.tablebody
+{
+    color:black !important;
+}
+option {
+    /* Whatever color  you want */
+    background-color: #82caff;
+
 .tablebody {
     color: black !important;
     cursor: pointer !important;
+
 }
